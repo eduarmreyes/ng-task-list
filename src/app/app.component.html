@@ -2,9 +2,9 @@
 
 <div class="app-container">
   <md-card *ngIf="!authService.authenticated()">
-    <md-card-title>Hello Visitor.</md-card-title>
+    <md-card-title>Hallo Visitor.</md-card-title>
     <md-card-subtitle>
-      Please <a (click)="authService.signIn()">sign in</a> to manage your task list.
+      Bitte <a (click)="authService.signIn()">anmelden</a>, to manage your task list.
     </md-card-subtitle>
   </md-card>
 </div>
