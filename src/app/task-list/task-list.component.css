@@ -1,0 +1,10 @@
+.task-item {
+  background-color: #eee;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+button.delete {
+  float: right;
+  top: -60px;
+}

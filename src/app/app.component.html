@@ -7,4 +7,5 @@
       Bitte <a (click)="authService.signIn()">anmelden</a>, to manage your task list.
     </md-card-subtitle>
   </md-card>
+  <app-task-list *ngIf="authService.authenticated()"></app-task-list>
 </div>
