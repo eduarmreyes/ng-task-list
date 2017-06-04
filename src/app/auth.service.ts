@@ -6,6 +6,8 @@ const AUTH0_CLIENT_ID = "zT49zBcucGXomCcQmf-SrSk2FCN5v1pk";
 const AUTH0_DOMAIN = "eduarmreyes.auth0.com";
 
 const ID_TOKEN = "ng-task-list-auth-id-token";
+const ACCESS_TOKEN = "ng-task-list-auth-access-token";
+const PROF_TOKEN = "ng-task-list-auth-profile";
 
 @Injectable()
 export class AuthService {
@@ -13,7 +15,15 @@ export class AuthService {
 
   constructor() {
     this.lock.on("authenticated", (authResult) => {
-      localStorage.setItem(ID_TOKEN, authResult.idToken);
+      localStorage.setItem(ACCESS_TOKEN, authResult.accessToken);
+      this.lock.getUserInfo(authResult.accessToken, function(error, profile) {
+        if (error) {
+          console.error("Error in lock@authenticated", error);
+          return;
+        }
+        localStorage.setItem(ID_TOKEN, authResult.idToken);
+        localStorage.setItem(PROF_TOKEN, JSON.stringify(profile));
+      });
     });
   }
 
@@ -21,6 +31,6 @@ export class AuthService {
 
   signOut() { localStorage.removeItem(ID_TOKEN); }
 
-  authenticated() { return tokenNotExpired(); }
+  authenticated() { return tokenNotExpired(ID_TOKEN); }
 
 }

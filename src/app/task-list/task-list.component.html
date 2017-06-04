@@ -1,5 +1,4 @@
 <md-card>
-  <p>Tasks: {{ tasks === "" }}</p>
   <md-card-title>Task List</md-card-title>
   <md-card-subtitle>All your tasks in one place.</md-card-subtitle>
   <md-list>
@@ -8,7 +7,7 @@
       <p>{{ task.description }}</p>
       <button class="delete" md-button md-raised-button color="accent" (click)="deleteTask(task)">Delete</button>
     </div>
-    <div class="task-item" *ngIf="tasks?.length == 0">
+    <div class="task-item" *ngIf="tasks === undefined || tasks?.length === 0">
       <p>You have no pending tasks.</p>
     </div>
   </md-list>
